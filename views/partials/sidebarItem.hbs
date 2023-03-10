@@ -1,0 +1,5 @@
+<a href="/detail/{{stock}}"
+    class="border block text-3xl text-left font-light text-white {{#when stock 'eq' selectedStock.symbol}}border-primary-500 bg-primary-500 drop-shadow-lg{{else}}border-gray-700 hover:bg-gray-700 cursor-pointer{{/when}} px-5 py-4 rounded-xl transition-all"
+>
+    {{stock}}
+</a>

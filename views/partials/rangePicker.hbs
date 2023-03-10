@@ -1,0 +1,5 @@
+<div class="flex-0 flex gap-2">
+  {{#each ranges}}
+    <a href="/detail/{{../stock}}?range={{this}}" class="text-xs px-2 py-1 uppercase font-medium text-white rounded-lg border {{#when this 'eq' ../selectedRange}}border-primary-500 bg-primary-500 drop-shadow-lg{{else}}border-gray-500 hover:bg-gray-500{{/when}}">{{this}}</a>
+  {{/each}}
+</div>

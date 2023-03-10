@@ -1,0 +1,36 @@
+{{> sidebar }}
+
+<section class="flex flex-col gap-4 bg-gray-700 py-8 px-10 drop-shadow-lg rounded-r-3xl my-8 w-full flex-1">
+  <div class="flex-0 flex gap-4 items-center">
+    <div class="flex-1 text-white flex gap-4 items-center">
+      <h1 class="text-4xl font-bold">{{selectedStock.companyName}}</h1>
+      <h2 class="text-2xl text-light opacity-50">{{selectedStock.symbol}}</h2>
+    </div>
+    <div class="text-white flex-0 py-1 px-2 rounded-lg font-bold {{#when selectedStock.change 'gteq' 0}}bg-green-700{{else}}bg-red-700{{/when}}">{{selectedStock.change}}</div>
+  </div>
+  {{> rangePicker stock=selectedStock.symbol ranges=ranges selectedRange=selectedRange}}
+  <canvas id="historicalDataChart" class="flex-1"></canvas>
+</section>
+
+<script>
+  const ctx = document.getElementById('historicalDataChart');
+
+  new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: {{{json selectedStock.historicalData}}}.map(x => x.date),
+      datasets: [{
+        label: 'Close Price',
+        data: {{{json selectedStock.historicalData}}}.map(x => x.close),
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: false
+        }
+      }
+    }
+  });
+</script>
