@@ -57,7 +57,7 @@ export class AppController {
   addSave(@Query('symbol') stockSymbol: string, @Res() res: Response) {
     this.stocks.push(stockSymbol);
 
-    return res.redirect('/');
+    return res.redirect(`/detail/${stockSymbol}`);
   }
 
   /**
